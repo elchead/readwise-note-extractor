@@ -11,7 +11,7 @@ def create_book_highlights(notes, title, author, date):
         "text": txt,
         "title": title,
         "author": author,
-        "highlighted_at": date + "T20:11:24+00:00",
+        "highlighted_at": date,
         "source_type": "book",
     }
     return [obj(n) for n in notes]
