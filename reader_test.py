@@ -106,6 +106,12 @@ featuredImagePreview: cover.jpeg
 ]
 
 
+def test_dateearlier():
+    date_time_str = "2022-02-25"
+    res = reader.shift_date(date_time_str, -1)
+    assert res == "2022-02-24"
+
+
 @pytest.mark.parametrize("txt, author, title, date", cases)
 def test_metadata(txt, author, title, date):
 

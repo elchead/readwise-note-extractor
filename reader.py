@@ -1,4 +1,5 @@
 import frontmatter
+import datetime
 
 
 def is_headline(line):
@@ -31,6 +32,16 @@ class MetaReader:
     @property
     def date(self):
         return str(self.yaml["date"])
+
+    @property
+    def date_earlier(self):
+        return shift_date(self.date, -1)
+
+
+def shift_date(date_time_str, nbr_days):
+    dt = datetime.datetime.strptime(date_time_str, "%Y-%m-%d")
+    res = dt + datetime.timedelta(days=-1)
+    return res.strftime("%Y-%m-%d")
 
 
 class NoteReader:

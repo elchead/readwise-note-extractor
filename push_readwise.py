@@ -6,8 +6,9 @@ import reader, readwise
 def push_highlights(filename):
     read = NoteReader(open(filename, "r"))
     meta = MetaReader(open(filename, "r"))
+
     notes = read.get_all_notes()
-    highlights = readwise.create_book_highlights(notes, title=meta.title, author=meta.author, date=meta.date)
+    highlights = readwise.create_book_highlights(notes, title=meta.title, author=meta.author, date=meta.date_earlier)
     print("Title:", meta.title)
     print("Author:", meta.author)
     print("Date:", meta.date)
@@ -15,7 +16,7 @@ def push_highlights(filename):
     resp = readwise.save_highlights(highlights)
     code = resp.status_code
     if code != 200:
-        raise Exception(f"Request failed:{code}\nHighlights: {highlights}")
+        raise Exception(f"Request failed:{code}\nHighlights: {highlights}; Reason: {resp.reason}")
 
 
 push_highlights("index.en.md")
